@@ -1,7 +1,11 @@
 import speech_recognition as sr
 import pyttsx3
 import webbrowser
-import MusicLibrary 
+import MusicLibrary
+from newsapi import NewsApiClient
+
+newsapi = NewsApiClient(api_key='1ee22953d011402789e2be6f95d819ff')
+top_headlines = newsapi.get_top_headlines()
 
 def speak(text):
     engine = pyttsx3.init()
@@ -18,31 +22,43 @@ def processCommand(command):
     elif "open linkedin" in command.lower():
         webbrowser.open("https://linkedin.com")
     elif command.lower().startswith("play"):
-        song = command.lower().split(" ")[1]
-        link = MusicLibrary.songs[song]
-        webbrowser.open(link)
+
+        song = command.lower().replace("play", "").strip()
+        
+        match = next((key for key in MusicLibrary.songs if key.lower() == song), None)
+    
+        if match:
+            link = MusicLibrary.songs[match]
+            webbrowser.open(link)
+            speak(f"Playing {match}")
+        else:
+            speak("Sorry, I couldn't find that song in the library.")
+    elif "news" in command.lower():
+        if 'articles' in top_headlines and top_headlines['articles']:
+            speak("Here are the top news headlines:")
+            for article in top_headlines['articles'][:5]:
+                speak(article['title'])
 
 if __name__ == "__main__":
     speak("Initializing Jarvis...")
-    r = sr.Recognizer()
+    recognizer = sr.Recognizer()
 
     while True:
         try:
             with sr.Microphone() as source:
                 print("Listening...")
-                audio = r.listen(source, timeout=5, phrase_time_limit=10)
+                audio = recognizer.listen(source, timeout=5, phrase_time_limit=10)
             
-            word = r.recognize_google(audio).lower()
+            word = recognizer.recognize_google(audio).lower()
             print(word)
             
-            
-            
-            if "hello" in word:
+            if "hello" in word or "jarvis" in word or "hellojarvis" in word:
                 speak("Hello! How can I assist you?")
+            elif "thanks" in word :
+                speak("You're welcome!")
             else:
                 processCommand(word)
-            
-        
+                
         except sr.UnknownValueError:
             print("Could not understand the audio. Please speak again.")
         except sr.RequestError:
