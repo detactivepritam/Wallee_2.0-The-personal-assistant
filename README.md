@@ -52,6 +52,5 @@ Add your News API key (like NewsAPI.org) if using news feature.
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/personal-ai-assistant.git
-   cd personal-ai-assistant
+   git clone [https://github.com/yourusername/personal-ai-assistant.git](https://github.com/detactivepritam/Wallee_2.0-The-personal-assistant)
 
