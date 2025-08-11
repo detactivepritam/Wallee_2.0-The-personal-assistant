@@ -8,8 +8,8 @@ import requests
 import random
 from datetime import datetime
 
-OPENWEATHER_API_KEY = 'dc436312a953884d2b19fd84012af220'
-NEWS_API_KEY = '1ee22953d011402789e2be6f95d819ff'
+OPENWEATHER_API_KEY = 'your api key'
+NEWS_API_KEY = 'your api key'
 
 newsapi = NewsApiClient(api_key=NEWS_API_KEY)
 top_headlines = newsapi.get_top_headlines()
