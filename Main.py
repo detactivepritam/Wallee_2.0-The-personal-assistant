@@ -21,15 +21,13 @@ science_qa = {
         "explain newton's first law": "Newton's first law states that an object in motion stays in motion unless acted upon by an external force.",
         "explain quantum mechanics": "Quantum mechanics is the branch of physics dealing with atomic and subatomic particles.",
         "explain the theory of relativity": "Einstein's theory of relativity describes the laws of physics in non-inertial frames of reference.",
-        "explain black hole": "A black hole is a region of spacetime where gravity is so strong that nothing can escape.",
-        "explain thermodynamics": "Thermodynamics is the study of heat, work, and energy transfer.", 
+        "explain black hole": "A black hole is a region of spacetime where gravity is so strong that nothing can escape.", 
     },
     "chemistry": {
         "what is an acid": "An acid is a substance that donates protons or accepts electrons in reactions.",
         "what is a chemical bond": "A chemical bond is the attraction between atoms that forms chemical substances.",
         "what is organic chemistry": "Organic chemistry studies carbon-containing compounds and their reactions.",
         "what is the ph scale": "The pH scale measures how acidic or basic a substance is from 0 to 14.",
-        "what is oxidation": "Oxidation is the loss of electrons during a reaction by a molecule or atom.",
         "what is a catalyst": "A catalyst is a substance that increases reaction rate without being consumed.",
     },
     "general": {
@@ -145,7 +143,7 @@ def processCommand(command):
             print(f"Error getting city: {e}")
             speak("Sorry, I didn't catch that. Please try again.")
     else:
-        speak("I didn't understand that command. Can you please repeat?")
+        speak("I don't understand that command. Can you please repeat?")
 
 if __name__ == "__main__":
     speak("Initializing wallee...")
